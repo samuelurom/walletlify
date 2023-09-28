@@ -1,0 +1,43 @@
+<%- contentFor('page_title') %>
+  <%= transaction.transaction_type==='income' ? 'Income' : 'Expense' %> Details
+
+    <%- contentFor('body') %>
+      <%- include('../partials/sidebar') %>
+        <main>
+          <h1>
+            <%= transaction.transaction_type==='income' ? 'Income' : 'Expense' %> Details
+          </h1>
+          <div class="content-wrapper">
+            <div class="md-content-width transaction-detail">
+
+              <div class="text-center">
+                <% if (transaction.transaction_type==='expense' ) { %>
+                  <% const icon=transaction.category_icon || '/images/default-expense-icon.svg' ; %>
+                    <img src="<%= icon %>" alt="<%= transaction.category_name %>">
+                    <% } else { %>
+                      <% const icon=transaction.category_icon || '/images/default-income-icon.svg' ; %>
+                        <img src="<%= icon %>" alt="<%= transaction.category_name %>">
+                        <% } %>
+                          <h3 class="text-center text-dark">
+                            <%= transaction.category_name %>
+                          </h3>
+                          <h4
+                            class="text-bold text-2x <%= transaction.transaction_type === 'expense' ? 'text-danger' : 'text-success' %>"
+                            title="Amount">
+                            $<%= transaction.amount %>
+                          </h4>
+
+                          <h4 class="text-bold text-dark margin-top-20">Date:</h4>
+                          <p>
+                            <%= transaction.date.toISOString().substr(0, 10) %>
+                          </p>
+
+                          <h4 class="text-bold text-dark margin-top-20">Description</h4>
+                          <p>
+                            <%= transaction.description %>
+                          </p>
+              </div>
+
+            </div>
+          </div>
+        </main>

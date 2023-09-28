@@ -22,7 +22,10 @@ router.get("/", (req, res) => {
     } else {
       const transactions = dbRes.rows;
 
-      res.render("transactions", { currentPage: "transactions", transactions });
+      res.render("transactions/list", {
+        currentPage: "transactions",
+        transactions,
+      });
     }
   });
 });
@@ -56,6 +59,80 @@ router.post("/", (req, res) => {
   });
 });
 
+// GET /transactions/:id
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `
+    SELECT t.id, t.amount, t.transaction_type, t.description, t.date, c.name AS category_name, c.icon_url AS category_icon
+    FROM transactions t
+    JOIN categories c ON t.category_id = c.id
+    WHERE t.id = $1;
+  `;
+
+  db.query(sql, [id], (err, dbRes) => {
+    if (err) {
+      console.log(err);
+      res.send("Something went wrong...");
+    } else {
+      const transaction = dbRes.rows[0];
+
+      res.render("transactions/show", { currentPage: "", transaction });
+    }
+  });
+});
+
+// GET /transactions/:id/edit
+router.get("/:id/edit", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `
+    SELECT * FROM transactions
+    WHERE id = $1;
+  `;
+
+  db.query(sql, [id], (err, dbRes) => {
+    if (err) {
+      console.log(err);
+      res.send("Something went wrong...");
+    } else {
+      const transaction = dbRes.rows[0];
+
+      res.render("transactions/edit", { currentPage: "", transaction });
+    }
+  });
+});
+
+// PUT /transactions/:id
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { amount, transaction_type, description, date, category } = req.body;
+
+  const sql = `
+    UPDATE transactions
+    SET amount = $1, transaction_type = $2, description = $3, date = $4, category_id = $5
+    WHERE id = $6;
+  `;
+
+  const values = [
+    Number(amount),
+    transaction_type,
+    description,
+    date,
+    Number(category),
+    id,
+  ];
+
+  db.query(sql, values, (err, dbRes) => {
+    if (err) {
+      console.log(err);
+      res.send("Something went wrong...");
+    } else {
+      res.redirect("/transactions");
+    }
+  });
+});
+
 // DELETE /transactions/:id
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
@@ -64,8 +141,6 @@ router.delete("/:id", (req, res) => {
     DELETE FROM transactions
     WHERE id = $1;
   `;
-
-  console.log(id);
 
   db.query(sql, [id], (err, dbRes) => {
     if (err) {

@@ -366,35 +366,6 @@ a.user {
   text-decoration: underline;
 }
 
-/* Style for utilities */
-.text-left {
-  text-align: left;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-danger {
-  color: #fe3b2c;
-}
-
-.text-success {
-  color: #21cb87;
-}
-
-.text-primary {
-  color: var(--primary-color);
-}
-
-.text-medium {
-  font-weight: 600;
-}
-
 /* Styling for modal container */
 .new-expense-modal, .new-income-modal, .edit-expense-modal, .edit-income-modal {
   display: none;
@@ -432,4 +403,58 @@ a.user {
   right: 0;
   padding: 10px 15px;
   cursor: pointer;
+}
+
+/* Style for utilities */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-danger {
+  color: #fe3b2c;
+}
+
+.text-success {
+  color: #21cb87;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-dark {
+  color: var(--dark-color);
+}
+
+.text-medium {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-1x {
+  font-size: 1.5rem;
+}
+
+.text-2x {
+  font-size: 2rem;
+}
+
+.md-content-width {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
 }

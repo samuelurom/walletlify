@@ -8,6 +8,7 @@ const isAuthenticated = require("./middlewares/is-authenticated");
 const requestLogger = require("./middlewares/request-logger");
 const setCurrentUser = require("./middlewares/set-current-user");
 const loadCategories = require("./middlewares/load-categories");
+const reqBodyMethodOverride = require("./middlewares/req-body-method-override");
 
 const dashboardRouter = require("./routes/dashboard-routes");
 const transactionsRouter = require("./routes/transactions-routes");
@@ -25,7 +26,7 @@ app.set("layout", "layouts/main-layout");
 // Middlewares =========
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(reqBodyMethodOverride);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

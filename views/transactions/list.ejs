@@ -1,0 +1,53 @@
+<%- contentFor('page_title') %>Transactions
+
+  <%- contentFor('body') %>
+    <%- include('../partials/sidebar') %>
+      <main>
+        <h1>Transactions</h1>
+        <div class="content-wrapper">
+          <table class="transaction-table">
+            <thead>
+              <tr>
+                <th class="text-left">Category</th>
+                <th class="text-left">Date</th>
+                <th class="text-right">Amount</th>
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% transactions.forEach((transaction)=> { %>
+                <tr>
+                  <td class="transaction-category">
+                    <% if (transaction.transaction_type==='expense' ) { %>
+                      <% const icon=transaction.category_icon || '/images/default-expense-icon.svg' ; %>
+                        <img src="<%= icon %>" alt="<%= transaction.category_name %>">
+                        <%= transaction.category_name %>
+                          <% } else { %>
+                            <% const icon=transaction.category_icon || '/images/default-income-icon.svg' ; %>
+                              <img src="<%= icon %>" alt="<%= transaction.category_name %>">
+                              <%= transaction.category_name %>
+                                <% } %>
+                  </td>
+                  <td>
+                    <%= new Date(transaction.date).toLocaleDateString() %>
+                  </td>
+                  <td
+                    class="text-right text-medium <%= transaction.transaction_type === 'expense' ? 'text-danger' : 'text-success' %>">
+                    $<%= transaction.amount %>
+                  </td>
+                  <td class="action-buttons text-right">
+                    <a class="action-button text-primary" title="View" href="/transactions/<%= transaction.id %>"><i
+                        class="fa fa-eye"></i></a>
+                    <a class="action-button text-primary" title="Edit"
+                      href="/transactions/<%= transaction.id %>/edit"><i class="fa fa-edit"></i></a>
+                    <form action="/transactions/<%= transaction.id %>" method="post">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button class="action-button text-danger" title="Delete"><i class="fa fa-trash"></i></button>
+                    </form>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </main>
