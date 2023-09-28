@@ -1,4 +1,26 @@
 <%- contentFor('page_title') %>Login
 
   <%- contentFor('body') %>
-    <h1>Login Form</h1>
+    <h2>Login</h2>
+    <p class="subtitle">Enter your credentials to access your account.</p>
+    <form action="/login" method="post">
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" name="email" id="email" placeholder="email@domain.com" />
+      </div>
+
+      <div class="form-group">
+        <div class="spacer">
+          <label for="password">Password</label>
+          <span><a href="#">Forgot Password?</a></span>
+        </div>
+        <input type="password" name="password" id="password" placeholder="Password" />
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login" />
+      </div>
+    </form>
+    <p>
+      Don't have an account? <a href="/signup">Register here.</a>
+    </p>

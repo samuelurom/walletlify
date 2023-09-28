@@ -4,14 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%- page_title %></title>
+  <title><%- page_title %> - Walletlify</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <h1>Manage Your Money in One Place</h1>
-  <p>With Walletlify you can track your money with ease and accuracy. Dive into income and transaction reports with
-    automatic categorization.</p>
-  <%- body %>
+  <div class="auth-layout">
+    <div class="auth-container">
+      <div class="left-column">
+        <div class="content">
+          <h1>Manage Your Money in One Place</h1>
+          <p>With Walletlify you can track your money with ease and accuracy. Dive into income and transaction reports
+            with
+            automatic categorization.</p>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="auth-form">
+          <%- body %>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
