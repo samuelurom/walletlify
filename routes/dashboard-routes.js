@@ -3,7 +3,7 @@ const isAuthenticated = require("../middlewares/is-authenticated");
 const router = express.Router();
 
 router.get("/", isAuthenticated, (req, res) => {
-  res.render("dashboard");
+  res.render("dashboard", { currentPage: "dashboard" });
 });
 
 module.exports = router;

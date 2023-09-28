@@ -4,11 +4,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%- page_title %></title>
+  <title><%- page_title %> - Walletlify</title>
+  <script src="https://kit.fontawesome.com/6dd2932751.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <%- body %>
+  <header>
+
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Walletlify Logo">
+          walletlify
+        </a>
+
+        <ul>
+          <li><a class="nav-link <%= currentPage === 'dashboard' ? 'active' : '' %>" href="/">Dashboard</a></li>
+          <li><a class="nav-link  <%= currentPage === 'transactions' ? 'active' : '' %>"
+              href="/transactions">Transactions</a></li>
+          <li><a class="nav-link  <%= currentPage === 'reports' ? 'active' : '' %>" href="/reports">Reports</a></li>
+        </ul>
+      </nav>
+
+      <div class="secondary-nav">
+
+        <a id="openIncomeModal" class="btn-primary">
+          <i class="fas fa-plus"></i>
+          Income
+        </a>
+        <a id="openExpenseModal" class="btn-primary">
+          <i class="fas fa-plus"></i>
+          Expense
+        </a>
+
+        <a href="" class="user">
+          <% if(currentUser.profile_image_url) { %>
+            <img src="<%= currentUser.profile_image_url %>" alt="<%= currentUser.full_name %>">
+            <% } else { %>
+              <img src="/images/avatar.png" alt="User Avatar">
+              <% } %>
+                <%= currentUser.full_name %> &nbsp; <i class="fas fa-chevron-down"></i>
+        </a>
+      </div>
+    </div>
+
+  </header>
+
+  <div class="container body-wrapper">
+    <%- body %>
+  </div>
+
+  <%- include('../modals/new-income-form'); %>
+    <%- include('../modals/new-expense-form'); %>
+
+      <script src="/js/app.js"></script>
 </body>
 
 </html>

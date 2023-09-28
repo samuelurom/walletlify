@@ -7,9 +7,11 @@ const session = require("express-session");
 const isAuthenticated = require("./middlewares/is-authenticated");
 const requestLogger = require("./middlewares/request-logger");
 const setCurrentUser = require("./middlewares/set-current-user");
+const loadCategories = require("./middlewares/load-categories");
 
 const dashboardRouter = require("./routes/dashboard-routes");
 const transactionsRouter = require("./routes/transactions-routes");
+const reportsRouter = require("./routes/reports-routes");
 const sessionsRouter = require("./routes/sessions-routes");
 const usersRouter = require("./routes/users-routes");
 
@@ -33,12 +35,14 @@ app.use(
 );
 
 app.use(setCurrentUser);
+app.use(loadCategories);
 app.use(requestLogger);
 app.use(expressLayouts);
 
 // Routes ==============
 app.use("/", dashboardRouter);
 app.use("/transactions", isAuthenticated, transactionsRouter);
+app.use("/reports", isAuthenticated, reportsRouter);
 app.use("/", sessionsRouter);
 app.use("/", usersRouter);
 
