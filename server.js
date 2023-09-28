@@ -1,20 +1,20 @@
 // Importing modules
+require("dotenv").config();
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const dotenv = require("dotenv");
+const session = require("express-session");
+
+const isAuthenticated = require("./middlewares/is-authenticated");
+const requestLogger = require("./middlewares/request-logger");
+const setCurrentUser = require("./middlewares/set-current-user");
 
 const dashboardRouter = require("./routes/dashboard-routes");
 const transactionsRouter = require("./routes/transactions-routes");
 const sessionsRouter = require("./routes/sessions-routes");
 const usersRouter = require("./routes/users-routes");
-const isAuthenticated = require("./middlewares/is-authenticated");
-const requestLogger = require("./middlewares/request-logger");
 
 // Initialize app ====
 const app = express();
-
-// Configurations ======
-dotenv.config();
 
 // View Engine =========
 app.set("view engine", "ejs");
@@ -22,7 +22,17 @@ app.set("layout", "layouts/main-layout");
 
 // Middlewares =========
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(setCurrentUser);
 app.use(requestLogger);
 app.use(expressLayouts);
 

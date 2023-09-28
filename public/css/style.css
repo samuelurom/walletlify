@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Open+Sans&family=Poiret+One&display=swap');
+
+:root {
+  --primary-color: #04A1F5;
+  --secondary-color: #027abb;
+  --light-background-color: #EFF0F2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--light-background-color);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #A5A5A5;
+  margin: 10px 0 25px 0;
+}
+
+.auth-layout {
+  background-color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-container .left-column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 5rem;
+}
+
+.auth-container .right-column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 5rem;
+}
+
+.left-column .content {
+  text-align: center;
+}
+
+.right-column .auth-form {
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-form form {
+  text-align: left;
+}
+
+input {
+  font-size: 1rem;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--secondary-color);
+}
+
+.form-group {
+  margin: 10px 0;
+}
+
+.form-group .spacer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-form a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-form a:hover {
+  text-decoration: underline;
+}
+
