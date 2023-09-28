@@ -42,7 +42,8 @@ router.post("/login", (req, res) => {
 
 // DELETE /logout
 router.delete("/logout", (req, res) => {
-  res.send("Logging out...");
+  req.session.userId = null;
+  res.redirect("/login");
 });
 
 module.exports = router;
