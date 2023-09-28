@@ -388,3 +388,17 @@ INSERT INTO categories (name, category_type) VALUES
 ('Crowdfunding', 'income'),
 ('Partnership Income', 'income'),
 ('Other Income', 'income');
+
+-- Insert items for Transactions
+INSERT INTO transactions (amount, transaction_type, description, date, user_id, category_id)
+VALUES
+  (100.00, 'income', 'Salary deposit', '2023-01-05', 1, 93),
+  (45.99, 'expense', 'Grocery shopping', '2023-01-10', 1, 1),
+  (500.00, 'income', 'Freelance payment', '2023-01-15', 1, 94),
+  (29.99, 'expense', 'Dining out', '2023-01-20', 1, 13),
+  (120.00, 'income', 'Part-time job', '2023-01-25', 1, 93),
+  (89.99, 'expense', 'Online shopping', '2023-02-03', 1, 24),
+  (300.00, 'income', 'Investment dividend', '2023-02-10', 1, 102),
+  (35.00, 'expense', 'Transportation', '2023-02-18', 1, 9),
+  (150.00, 'income', 'Consulting fee', '2023-02-25', 1, 98),
+  (20.99, 'expense', '', '2023-03-02', 1, 15);
