@@ -12,7 +12,7 @@
               <input type="hidden" name="transaction_type" value="<%= transaction.transaction_type %>">
 
               <div class="form-group">
-                <label for="category">Category</label>
+                <label for="category" class="text-medium">Category</label>
                 <select id="category" name="category">
                   <% if (transaction.transaction_type==='income' ) { %>
 
@@ -40,15 +40,15 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="amount">Amount (<strong>$</strong>)</label>
+                <label for="amount" class="text-medium">Amount (<strong>$</strong>)</label>
                 <input type="number" min="1" step="any" name="amount" value="<%= transaction.amount %>">
               </div>
               <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description" class="text-medium">Description</label>
                 <textarea name="description"><%= transaction.description %></textarea>
               </div>
               <div class="form-group">
-                <label for="date">Transaction Date</label>
+                <label for="date" class="text-medium">Transaction Date</label>
                 <input type="date" name="date" value="<%= transaction.date.toISOString().substr(0, 10) %>">
               </div>
               <div class="form-group">

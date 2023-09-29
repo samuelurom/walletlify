@@ -6,7 +6,7 @@
     <form action="/transactions" method="POST">
       <input type="hidden" name="transaction_type" value="expense">
       <div class="form-group">
-        <label for="category">Category</label>
+        <label for="category" class="text-medium">Category</label>
         <select id="category" name="category">
           <% categories.forEach((category)=> { %>
             <% if (category.category_type==='expense' ) { %>
@@ -18,15 +18,15 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="amount">Amount (<strong>$</strong>)</label>
+        <label for="amount" class="text-medium">Amount (<strong>$</strong>)</label>
         <input type="number" min="1" step="any" name="amount">
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description" class="text-medium">Description</label>
         <textarea name="description"></textarea>
       </div>
       <div class="form-group">
-        <label for="date">Transaction Date</label>
+        <label for="date" class="text-medium">Transaction Date</label>
         <input type="date" name="date">
       </div>
       <div class="form-group">
