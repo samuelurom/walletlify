@@ -1,0 +1,20 @@
+<aside>
+  <form class="search-form" action="/search" method="GET">
+    <div class="search-box">
+      <button><i class="fa fa-search"></i></button>
+      <input type="text" name="query" placeholder="Search...">
+    </div>
+  </form>
+
+  <h3>Account</h3>
+
+  <div class="sidebar-nav">
+    <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+    <a href="/profile/edit"><i class="fas fa-cog"></i> Settings</a>
+    <a href="/profile/change-password"><i class="fas fa-lock"></i> Change Password</a>
+    <form action="/logout" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" class="btn-secondary"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </form>
+  </div>
+</aside>

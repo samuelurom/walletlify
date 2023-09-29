@@ -18,6 +18,7 @@ const usersRouter = require("./routes/users-routes");
 
 // Initialize app ====
 const app = express();
+const port = process.env.PORT || 3000;
 
 // View Engine =========
 app.set("view engine", "ejs");
@@ -29,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(reqBodyMethodOverride);
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "super secret for me",
     resave: false,
     saveUninitialized: true,
   })
@@ -48,4 +49,4 @@ app.use("/", sessionsRouter);
 app.use("/", usersRouter);
 
 // Server ==============
-app.listen(3000, () => console.log("Server listening on port 3000!"));
+app.listen(port, () => console.log("Server listening on port 3000!"));

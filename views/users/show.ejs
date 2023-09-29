@@ -1,0 +1,39 @@
+<%- contentFor('page_title') %>Profile
+
+  <%- contentFor('body') %>
+    <%- include('../partials/settings-sidebar') %>
+      <main>
+        <h1>
+          Profile
+        </h1>
+        <div class="content-wrapper">
+          <div class="md-content-width transaction-detail">
+
+            <div class="text-center">
+
+              <div class="user-avatar">
+                <% if(currentUser.profile_image_url) { %>
+                  <img src="<%= currentUser.profile_image_url %>" alt="<%= currentUser.full_name %>">
+                  <% } else { %>
+                    <img src="/images/avatar.png" alt="User Avatar">
+                    <% } %>
+              </div>
+
+              <h3 class="text-center text-dark">
+                <%= currentUser.full_name %>
+              </h3>
+              <h4 class="text-bold text-dark margin-top-20">Email</h4>
+              <p>
+                <%= currentUser.email %>
+              </p>
+              <h4 class="text-bold text-dark margin-top-20">Prefarred Currency</h4>
+              <p>
+                <%= currentUser.currency_name %> (<span class="text-bold">
+                    <%= currentUser.currency_code %>
+                  </span>)
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </main>

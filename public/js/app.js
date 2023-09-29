@@ -7,6 +7,9 @@ const closeExpenseModalBtn = document.querySelector(
   ".new-expense-modal .close"
 );
 
+const userBtn = document.querySelector(".user");
+const dropdownContent = document.querySelector(".dropdown-content");
+
 const newIncomeModal = document.querySelector(".new-income-modal");
 const newExpenseModal = document.querySelector(".new-expense-modal");
 
@@ -25,4 +28,8 @@ closeIncomeModalBtn.addEventListener("click", () => {
 
 closeExpenseModalBtn.addEventListener("click", () => {
   newExpenseModal.style.display = "none";
+});
+
+userBtn.addEventListener("click", () => {
+  dropdownContent.classList.toggle("show");
 });
