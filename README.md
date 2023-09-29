@@ -31,14 +31,6 @@ To get started with Walletlify, follow these steps:
 4. Configure your database connection in the app.
 5. Run the application using `npm start` or `yarn start` on a live server or `npm run dev` on your local machine.
 
-## Usage
-
-- Register or log in to your account.
-- Add your expenses and income sources with descriptions and categories.
-- View your account balances and recent transactions on the dashboard.
-- Access your full transaction history in the Transaction History section.
-- Set your prefarred currency in your account settings
-
 ## Database Schema
 
 Walletlify uses a PostgreSQL database with the following tables:
@@ -51,6 +43,18 @@ Walletlify uses a PostgreSQL database with the following tables:
 ### Entity Relationship Diagram (ERD)
 
 ![Database ERD for Walletlify](/public/images/database-erd.jpeg)
+
+## Usage
+
+- Register or log in to your account.
+- Add your expenses and income sources with descriptions and categories.
+- View your account balances and recent transactions on the dashboard.
+- Access your full transaction history in the Transaction History section.
+- Set your prefarred currency in your account settings
+
+## Demo Link
+
+Experience [Walletlify](https://walletlify.onrender.com/) and take control of your personal finance!
 
 ## Contributing
 
