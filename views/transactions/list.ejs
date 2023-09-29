@@ -33,7 +33,8 @@
                   </td>
                   <td
                     class="text-right text-medium <%= transaction.transaction_type === 'expense' ? 'text-danger' : 'text-success' %>">
-                    $<%= transaction.amount %>
+                    <%= currentUser.currency_symbol %>
+                      <%= transaction.amount %>
                   </td>
                   <td class="action-buttons text-right">
                     <a class="action-button text-primary" title="View" href="/transactions/<%= transaction.id %>"><i

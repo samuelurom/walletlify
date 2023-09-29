@@ -40,7 +40,9 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="amount" class="text-medium">Amount (<strong>$</strong>)</label>
+                <label for="amount" class="text-medium">Amount (<strong>
+                    <%= currentUser.currency_symbol %>
+                  </strong>)</label>
                 <input type="number" min="1" step="any" name="amount" value="<%= transaction.amount %>">
               </div>
               <div class="form-group">
