@@ -12,10 +12,10 @@
 
               <div class="text-center">
                 <% if (transaction.transaction_type==='expense' ) { %>
-                  <% const icon=transaction.category_icon || '/images/default-expense-icon.svg' ; %>
+                  <% const icon=transaction.category_icon || '/images/default-expense-icon.png' ; %>
                     <img src="<%= icon %>" alt="<%= transaction.category_name %>">
                     <% } else { %>
-                      <% const icon=transaction.category_icon || '/images/default-income-icon.svg' ; %>
+                      <% const icon=transaction.category_icon || '/images/default-income-icon.png' ; %>
                         <img src="<%= icon %>" alt="<%= transaction.category_name %>">
                         <% } %>
                           <h3 class="text-center text-dark">
