@@ -2,9 +2,9 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 
 const upload = require("../middlewares/upload");
+const isAuthenticated = require("../middlewares/is-authenticated");
 
 const db = require("../db");
-const isAuthenticated = require("../middlewares/is-authenticated");
 
 const router = express.Router();
 
@@ -41,7 +41,6 @@ router.post("/signup", (req, res) => {
 
 // GET /profile
 router.get("/profile", isAuthenticated, (req, res) => {
-  console.log(res.locals.currentUser);
   res.render("users/show", { currentPage: "" });
 });
 
@@ -73,19 +72,36 @@ router.post(
   (req, res) => {
     const { profile_image, full_name, email, prefarred_currency } = req.body;
 
-    const sql = `
-    UPDATE users
-    SET full_name = $1, email = $2, profile_image_url = $3, currency_id = $4
-    WHERE id = $5;
-  `;
+    let sql;
+    let values;
 
-    const values = [
-      full_name,
-      email,
-      req.file.path,
-      prefarred_currency,
-      res.locals.currentUser.id,
-    ];
+    if (req.file) {
+      uploadedFile = req.file.path;
+      sql = `
+        UPDATE users
+        SET full_name = $1, email = $2, profile_image_url = $3, currency_id = $4
+        WHERE id = $5;
+      `;
+      values = [
+        full_name,
+        email,
+        uploadedFile,
+        prefarred_currency,
+        res.locals.currentUser.id,
+      ];
+    } else {
+      sql = `
+        UPDATE users
+        SET full_name = $1, email = $2, currency_id = $3
+        WHERE id = $4;
+      `;
+      values = [
+        full_name,
+        email,
+        prefarred_currency,
+        res.locals.currentUser.id,
+      ];
+    }
 
     db.query(sql, values, (err, dbRes) => {
       if (err) {
@@ -97,5 +113,58 @@ router.post(
     });
   }
 );
+
+// GET /profile/password
+router.get("/profile/password", isAuthenticated, (req, res) => {
+  res.render("users/change-password", { currentPage: "" });
+});
+
+// PUT /profile/password
+router.put("/profile/password", isAuthenticated, (req, res) => {
+  const userId = res.locals.currentUser.id;
+  const { old_password, new_password } = req.body;
+
+  const sql = `
+    SELECT password_hash
+    FROM users
+    WHERE id = $1;
+  `;
+
+  db.query(sql, [userId], (err, dbRes) => {
+    if (err) {
+      console.log(err);
+      res.send("Something went wrong...");
+    } else {
+      const passwordHash = dbRes.rows[0].password_hash;
+
+      bcrypt.compare(old_password, passwordHash, function (err, isSame) {
+        if (isSame) {
+          const saltRounds = 12;
+          bcrypt.genSalt(saltRounds, function (err, salt) {
+            bcrypt.hash(new_password, salt, function (err, hash) {
+              // Update user record with hash password.
+              const sql = `
+                UPDATE users
+                SET password_hash = $1
+                WHERE id = $2;
+              `;
+
+              db.query(sql, [hash, userId], (err, dbRes) => {
+                if (err) {
+                  console.log(err);
+                  res.send("Something went wrong...");
+                } else {
+                  res.redirect("/profile");
+                }
+              });
+            });
+          });
+        } else {
+          res.redirect("/profile/password");
+        }
+      });
+    }
+  });
+});
 
 module.exports = router;
