@@ -27,7 +27,7 @@
         <td
           class="text-right text-medium <%= transaction.transaction_type === 'expense' ? 'text-danger' : 'text-success' %>">
           <%= currentUser.currency_symbol %>
-            <%= transaction.amount %>
+            <%= new Intl.NumberFormat().format(transaction.amount) %>
         </td>
         <td class="action-buttons text-right">
           <a class="action-button text-primary" title="View" href="/transactions/<%= transaction.id %>"><i

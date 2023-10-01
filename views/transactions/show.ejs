@@ -24,7 +24,7 @@
                           <h4
                             class="text-bold text-2x <%= transaction.transaction_type === 'expense' ? 'text-danger' : 'text-success' %>"
                             title="Amount">
-                            $<%= transaction.amount %>
+                            $<%= new Intl.NumberFormat().format(transaction.amount) %>
                           </h4>
 
                           <h4 class="text-bold text-dark margin-top-20">Date:</h4>
