@@ -15,6 +15,7 @@ const transactionsRouter = require("./routes/transactions-routes");
 const reportsRouter = require("./routes/reports-routes");
 const sessionsRouter = require("./routes/sessions-routes");
 const usersRouter = require("./routes/users-routes");
+const searchRouter = require("./routes/search-routes");
 
 // Initialize app ====
 const app = express();
@@ -45,6 +46,7 @@ app.use(expressLayouts);
 app.use("/", dashboardRouter);
 app.use("/transactions", isAuthenticated, transactionsRouter);
 app.use("/reports", isAuthenticated, reportsRouter);
+app.use("/search", isAuthenticated, searchRouter);
 app.use("/", sessionsRouter);
 app.use("/", usersRouter);
 

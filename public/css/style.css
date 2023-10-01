@@ -88,6 +88,11 @@ aside, main {
 
 aside {
   padding: 30px;
+  align-self: flex-start;
+}
+
+main {
+  align-self: flex-start;
 }
 
 main h1 {
@@ -531,4 +536,10 @@ a.user {
 
 .margin-top-20 {
   margin-top: 20px;
+}
+
+.spacer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }

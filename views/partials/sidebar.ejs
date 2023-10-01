@@ -1,15 +1,66 @@
 <aside>
-  <form class="search-form" action="/search" method="GET">
-    <div class="search-box">
-      <button><i class="fa fa-search"></i></button>
-      <input type="text" name="query" placeholder="Search...">
-    </div>
-  </form>
+  <%- include('./search-form') %>
 
-  <h3>Filter Records</h3>
+    <h3>Filter Records</h3>
+    <form action="/search/filter" method="get">
+      <h4 class="margin-top-20">Record Types</h4>
+      <!-- Filter by income -->
+      <div class="form-group">
+        <label for="income">Income</label>
+        <select id="income" name="income">
+          <option value=""></option>
+          <% categories.forEach((category)=> { %>
+            <% if (category.category_type==='income' ) { %>
+              <option value="<%= category.id %>">
+                <%= category.name %>
+              </option>
+              <% } %>
+                <% }) %>
+        </select>
 
-  <h4>Categories</h4>
-  <h4>Record Types</h4>
-  <h4>Amount Range</h4>
-  <h4>Date</h4>
+        <!-- Filter by expense -->
+        <div class="form-group">
+          <label for="expense">Expense</label>
+          <select id="expense" name="expense">
+            <option value=""></option>
+            <% categories.forEach((category)=> { %>
+              <% if (category.category_type==='expense' ) { %>
+                <option value="<%= category.id %>">
+                  <%= category.name %>
+                </option>
+                <% } %>
+                  <% }) %>
+          </select>
+        </div>
+      </div>
+
+      <!-- Filter by amount -->
+      <h4 class="margin-top-20">Amount Range</h4>
+      <div class="spacer">
+        <div class="form-group">
+          <label for="min_amount">Min (<%= currentUser.currency_symbol %>)</label>
+          <input type="number" min="1" step="any" name="min_amount">
+        </div>
+        <div class="form-group">
+          <label for="max_amount">Max (<%= currentUser.currency_symbol %>)</label>
+          <input type="number" min="1" step="any" name="max_amount">
+        </div>
+      </div>
+
+      <!-- Filter by date -->
+      <h4 class="margin-top-20">Date Range</h4>
+      <div class="form-group">
+        <label for="start_date">Start Date</label>
+        <input type="date" name="start_date">
+      </div>
+      <div class="form-group">
+        <label for="end_date">End Date</label>
+        <input type="date" name="end_date" value="<%= new Date().toISOString().substring(0, 10) %>">
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn-primary">Filter Records</button>
+      </div>
+    </form>
+
 </aside>
