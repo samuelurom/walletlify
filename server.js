@@ -8,6 +8,7 @@ const isAuthenticated = require("./middlewares/is-authenticated");
 const requestLogger = require("./middlewares/request-logger");
 const setCurrentUser = require("./middlewares/set-current-user");
 const loadCategories = require("./middlewares/load-categories");
+const loadRequestQuery = require("./middlewares/load-request-query");
 const reqBodyMethodOverride = require("./middlewares/req-body-method-override");
 
 const dashboardRouter = require("./routes/dashboard-routes");
@@ -39,6 +40,7 @@ app.use(
 
 app.use(setCurrentUser);
 app.use(loadCategories);
+app.use(loadRequestQuery);
 app.use(requestLogger);
 app.use(expressLayouts);
 
