@@ -10,9 +10,24 @@ const expensesData = transactions.filter(
 );
 const incomesData = transactions.filter((t) => t.transaction_type === "income");
 
-const totalIncome = incomesData.reduce((acc, t) => acc + t.amount, 0);
-const totalExpense = expensesData.reduce((acc, t) => acc + t.amount, 0);
+const totalIncome = incomesData.reduce((acc, t) => acc + Number(t.amount), 0);
+const totalExpense = expensesData.reduce((acc, t) => acc + Number(t.amount), 0);
 
+// Incomes total chart
+const incomeTotalChart = new Chart(incomesCanvas, {
+  type: "doughnut",
+  data: {
+    labels: ["Income", "Remaining"],
+    datasets: [
+      {
+        data: [totalIncome, totalIncome - totalExpense],
+        backgroundColor: ["#36A2EB", "#E7E7E7"], // You can change colors here
+      },
+    ],
+  },
+});
+
+// Expenses trend chart
 const chart = new Chart(ctx, {
   type: "line",
   data: {
