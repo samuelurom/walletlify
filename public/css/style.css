@@ -486,6 +486,28 @@ a.user {
   display: block;
 }
 
+/* Style for cards */
+.card-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 48%; /* Adjust as needed to control the card width */
+  background-color: var(--light-page-background-color);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.card-value {
+  font-size: 24px;
+}
+
 /* Style for dataset div */
 #transactions-data {
   display: none;

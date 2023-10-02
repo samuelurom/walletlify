@@ -2,6 +2,8 @@ const ctx = document.getElementById("expenseTrendChart").getContext("2d");
 const transactionsDataDiv = document.getElementById("transactions-data");
 const incomesCanvas = document.getElementById("incomesTotalChart");
 const expensesCanvas = document.getElementById("expensesTotalChart");
+const totalIncomeDiv = document.getElementById("totalIncomeValue");
+const totalExpenseDiv = document.getElementById("totalExpenseValue");
 
 const transactions = JSON.parse(transactionsDataDiv.dataset.transactions);
 
@@ -54,3 +56,9 @@ const chart = new Chart(ctx, {
     },
   },
 });
+
+// Display total income
+totalIncomeDiv.innerText = `$${new Intl.NumberFormat().format(totalIncome)}`;
+
+// Display total expense
+totalExpenseDiv.innerText = `$${new Intl.NumberFormat().format(totalExpense)}`;
