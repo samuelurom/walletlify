@@ -1,62 +1,65 @@
 <%- contentFor('page_title') %>Edit <%= transaction.transaction_type==='income' ? 'Income' : 'Expense' %>
 
     <%- contentFor('body') %>
-      <%- include('../partials/sidebar') %>
-        <main>
-          <h1>Edit <%= transaction.transaction_type==='income' ? 'Income' : 'Expense' %>
-          </h1>
-          <div class="content-wrapper">
+      <div class="container body-wrapper">
+        <%- include('../partials/sidebar') %>
+          <main>
+            <h1>Edit <%= transaction.transaction_type==='income' ? 'Income' : 'Expense' %>
+            </h1>
+            <div class="content-wrapper">
 
-            <form action="/transactions/<%= transaction.id %>" method="POST" class="md-content-width">
-              <input type="hidden" name="_method" value="PUT">
-              <input type="hidden" name="transaction_type" value="<%= transaction.transaction_type %>">
+              <form action="/transactions/<%= transaction.id %>" method="POST" class="md-content-width">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="transaction_type" value="<%= transaction.transaction_type %>">
 
-              <div class="form-group">
-                <label for="category" class="text-medium">Category</label>
-                <select id="category" name="category">
-                  <% if (transaction.transaction_type==='income' ) { %>
+                <div class="form-group">
+                  <label for="category" class="text-medium">Category</label>
+                  <select id="category" name="category">
+                    <% if (transaction.transaction_type==='income' ) { %>
 
-                    <% categories.forEach((category)=> { %>
-                      <% if (category.category_type==='income' ) { %>
-                        <option value="<%= category.id %>" <%=transaction.category_id===category.id ? 'selected' : '' %>
-                          >
-                          <%= category.name %>
-                        </option>
-                        <% } %>
-                          <% }) %>
+                      <% categories.forEach((category)=> { %>
+                        <% if (category.category_type==='income' ) { %>
+                          <option value="<%= category.id %>" <%=transaction.category_id===category.id ? 'selected' : ''
+                            %>
+                            >
+                            <%= category.name %>
+                          </option>
+                          <% } %>
+                            <% }) %>
 
-                            <% } else { %>
+                              <% } else { %>
 
-                              <% categories.forEach((category)=> { %>
-                                <% if (category.category_type==='expense' ) { %>
-                                  <option value="<%= category.id %>" <%=transaction.category_id===category.id
-                                    ? 'selected' : '' %>>
-                                    <%= category.name %>
-                                  </option>
-                                  <% } %>
-                                    <% }) %>
+                                <% categories.forEach((category)=> { %>
+                                  <% if (category.category_type==='expense' ) { %>
+                                    <option value="<%= category.id %>" <%=transaction.category_id===category.id
+                                      ? 'selected' : '' %>>
+                                      <%= category.name %>
+                                    </option>
+                                    <% } %>
+                                      <% }) %>
 
-                                      <% } %>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="amount" class="text-medium">Amount (<strong>
-                    <%= currentUser.currency_symbol %>
-                  </strong>)</label>
-                <input type="number" min="1" step="any" name="amount" value="<%= transaction.amount %>">
-              </div>
-              <div class="form-group">
-                <label for="description" class="text-medium">Description</label>
-                <textarea name="description"><%= transaction.description %></textarea>
-              </div>
-              <div class="form-group">
-                <label for="date" class="text-medium">Transaction Date</label>
-                <input type="date" name="date" value="<%= transaction.date.toISOString().substr(0, 10) %>">
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn-primary">Save</button>
-              </div>
-            </form>
+                                        <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="amount" class="text-medium">Amount (<strong>
+                      <%= currentUser.currency_symbol %>
+                    </strong>)</label>
+                  <input type="number" min="1" step="any" name="amount" value="<%= transaction.amount %>">
+                </div>
+                <div class="form-group">
+                  <label for="description" class="text-medium">Description</label>
+                  <textarea name="description"><%= transaction.description %></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="date" class="text-medium">Transaction Date</label>
+                  <input type="date" name="date" value="<%= transaction.date.toISOString().substr(0, 10) %>">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn-primary">Save</button>
+                </div>
+              </form>
 
-          </div>
-        </main>
+            </div>
+          </main>
+      </div>

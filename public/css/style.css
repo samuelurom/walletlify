@@ -480,6 +480,11 @@ a.user {
   display: block;
 }
 
+/* Style for dataset div */
+#transactions-data {
+  display: none;
+}
+
 /* Style for utilities */
 .show {
   display: block;

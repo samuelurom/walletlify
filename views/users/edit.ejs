@@ -1,60 +1,62 @@
 <%- contentFor('page_title') %>Edit Settings
 
   <%- contentFor('body') %>
-    <%- include('../partials/settings-sidebar') %>
-      <main>
-        <h1>
-          Edit Settings
-        </h1>
-        <div class="content-wrapper">
-          <div class="md-content-width transaction-detail">
+    <div class="container body-wrapper">
+      <%- include('../partials/settings-sidebar') %>
+        <main>
+          <h1>
+            Edit Settings
+          </h1>
+          <div class="content-wrapper">
+            <div class="md-content-width transaction-detail">
 
-            <div class="text-center">
-              <div class="user-avatar">
-                <% if(currentUser.profile_image_url) { %>
-                  <img src="<%= currentUser.profile_image_url %>" alt="<%= currentUser.full_name %>">
-                  <% } else { %>
-                    <img src="/images/avatar.png" alt="User Avatar">
-                    <% } %>
+              <div class="text-center">
+                <div class="user-avatar">
+                  <% if(currentUser.profile_image_url) { %>
+                    <img src="<%= currentUser.profile_image_url %>" alt="<%= currentUser.full_name %>">
+                    <% } else { %>
+                      <img src="/images/avatar.png" alt="User Avatar">
+                      <% } %>
+                </div>
               </div>
+
+              <div class="text-left">
+                <form action="/profile" method="POST" class="md-content-width" enctype="multipart/form-data">
+                  <!-- <input type="hidden" name="_method" value="PUT"> -->
+
+                  <div class="form-group">
+                    <label for="profile_image" class="text-medium">Change Profile Image</label>
+                    <input type="file" name="profile_image">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="full_name" class="text-medium">Full Name</label>
+                    <input type="text" name="full_name" value="<%= currentUser.full_name %>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email" class="text-medium">Email Address</label>
+                    <input type="email" name="email" value="<%= currentUser.email %>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="preferred_currency" class="text-medium">Preferred Currency</label>
+                    <select id="prefarred_currency" name="prefarred_currency">
+                      <% currencies.forEach((currency)=> { %>
+                        <option value="<%= currency.id %>" <%=currentUser.currency_name===currency.name ? 'selected'
+                          : '' %>><%= currency.name %> (<%= currency.symbol %>)</option>
+                        <% }) %>
+                    </select>
+
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+
             </div>
-
-            <div class="text-left">
-              <form action="/profile" method="POST" class="md-content-width" enctype="multipart/form-data">
-                <!-- <input type="hidden" name="_method" value="PUT"> -->
-
-                <div class="form-group">
-                  <label for="profile_image" class="text-medium">Change Profile Image</label>
-                  <input type="file" name="profile_image">
-                </div>
-
-                <div class="form-group">
-                  <label for="full_name" class="text-medium">Full Name</label>
-                  <input type="text" name="full_name" value="<%= currentUser.full_name %>">
-                </div>
-
-                <div class="form-group">
-                  <label for="email" class="text-medium">Email Address</label>
-                  <input type="email" name="email" value="<%= currentUser.email %>">
-                </div>
-
-                <div class="form-group">
-                  <label for="preferred_currency" class="text-medium">Preferred Currency</label>
-                  <select id="prefarred_currency" name="prefarred_currency">
-                    <% currencies.forEach((currency)=> { %>
-                      <option value="<%= currency.id %>" <%=currentUser.currency_name===currency.name ? 'selected' : ''
-                        %>><%= currency.name %> (<%= currency.symbol %>)</option>
-                      <% }) %>
-                  </select>
-
-                </div>
-
-                <div class="form-group">
-                  <button type="submit" class="btn-primary">Save</button>
-                </div>
-              </form>
-            </div>
-
           </div>
-        </div>
-      </main>
+        </main>
+    </div>

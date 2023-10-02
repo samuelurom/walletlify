@@ -1,3 +1,17 @@
 <%- contentFor('page_title') %>Dashboard
 
   <%- contentFor('body') %>
+    <div class="container body-wrapper">
+      <aside>
+        Dashboard
+      </aside>
+      <main>
+
+        <canvas id="transactionsChart"></canvas>
+      </main>
+
+      <div id="transactions-data" data-transactions='<%- JSON.stringify(transactions) %>'></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/dashboard.js"></script>

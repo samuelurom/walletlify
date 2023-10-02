@@ -2,16 +2,18 @@
   <%= currentPage==='search' ? 'Search' : 'Filter' %> Results
 
     <%- contentFor('body') %>
-      <%- include('../partials/sidebar') %>
-        <main>
-          <h1>
-            <% if (currentPage==='search' ) { %>
-              Results for <%= query %>
-                <% } else { %>
-                  Filtered Results
-                  <% } %>
-          </h1>
-          <div class="content-wrapper">
-            <%- include('../partials/transactions-table') %>
-          </div>
-        </main>
+      <div class="container body-wrapper">
+        <%- include('../partials/sidebar') %>
+          <main>
+            <h1>
+              <% if (currentPage==='search' ) { %>
+                Results for <%= query %>
+                  <% } else { %>
+                    Filtered Results
+                    <% } %>
+            </h1>
+            <div class="content-wrapper">
+              <%- include('../partials/transactions-table') %>
+            </div>
+          </main>
+      </div>

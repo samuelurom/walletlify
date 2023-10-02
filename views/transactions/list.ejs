@@ -1,10 +1,12 @@
 <%- contentFor('page_title') %>All Transactions
 
   <%- contentFor('body') %>
-    <%- include('../partials/sidebar') %>
-      <main>
-        <h1>All Transactions</h1>
-        <div class="content-wrapper">
-          <%- include('../partials/transactions-table') %>
-        </div>
-      </main>
+    <div class="container body-wrapper">
+      <%- include('../partials/sidebar') %>
+        <main>
+          <h1>All Transactions</h1>
+          <div class="content-wrapper">
+            <%- include('../partials/transactions-table') %>
+          </div>
+        </main>
+    </div>
