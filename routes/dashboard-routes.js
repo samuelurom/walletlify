@@ -12,6 +12,7 @@ router.get("/", isAuthenticated, (req, res) => {
     FROM transactions t
     JOIN categories c ON t.category_id = c.id
     WHERE t.user_id = $1
+    AND t.date >= CURRENT_DATE - INTERVAL '30 days'
     ORDER BY t.date DESC;
   `;
   const values = [userId];

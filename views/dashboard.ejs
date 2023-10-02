@@ -1,13 +1,17 @@
 <%- contentFor('page_title') %>Dashboard
 
   <%- contentFor('body') %>
-    <div class="container body-wrapper">
+    <div class="container dashboard-wrapper">
       <aside>
-        Dashboard
+        <h4 class="text-center">Dashboard</h4>
+        <canvas id="incomesTotalChart"></canvas>
+        <canvas id="expensesTotalChart"></canvas>
       </aside>
       <main>
-
-        <canvas id="transactionsChart"></canvas>
+        <div class="content-wrapper">
+          <h4 class="text-center">Expense Trend</h4>
+          <canvas id="expenseTrendChart"></canvas>
+        </div>
       </main>
 
       <div id="transactions-data" data-transactions='<%- JSON.stringify(transactions) %>'></div>
