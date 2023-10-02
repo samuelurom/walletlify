@@ -402,3 +402,26 @@ VALUES
   (35.00, 'expense', 'Transportation', '2023-02-18', 1, 9),
   (150.00, 'income', 'Consulting fee', '2023-02-25', 1, 98),
   (20.99, 'expense', '', '2023-03-02', 1, 15);
+
+INSERT INTO transactions (amount, transaction_type, description, date, user_id, category_id)
+VALUES
+  (75.50, 'expense', 'Grocery shopping', current_date - interval '2 days', 1, 1),
+  (29.99, 'expense', 'Dining out', current_date - interval '5 days', 1, 2),
+  (15.00, 'expense', 'Transportation', current_date - interval '7 days', 2, 3),
+  (45.99, 'expense', 'Online shopping', current_date - interval '12 days', 2, 4),
+  (22.50, 'expense', 'Utilities', current_date - interval '15 days', 1, 5),
+  (80.00, 'expense', 'Rent', current_date - interval '18 days', 1, 6),
+  (36.75, 'expense', 'Healthcare', current_date - interval '21 days', 2, 7),
+  (50.00, 'expense', 'Education', current_date - interval '23 days', 1, 8),
+  (18.99, 'expense', 'Entertainment', current_date - interval '28 days', 2, 9),
+  (30.25, 'expense', 'Home improvement', current_date - interval '30 days', 1, 10),
+  (500.00, 'income', 'Freelance payment', current_date - interval '3 days', 2, 11),
+  (120.00, 'income', 'Part-time job', current_date - interval '6 days', 1, 11),
+  (600.00, 'income', 'Salary deposit', current_date - interval '10 days', 1, 11),
+  (300.00, 'income', 'Investment dividend', current_date - interval '13 days', 2, 11),
+  (200.00, 'income', 'Consulting fee', current_date - interval '17 days', 1, 11),
+  (450.00, 'income', 'Online sales', current_date - interval '20 days', 2, 11),
+  (180.00, 'income', 'Rent income', current_date - interval '24 days', 1, 11),
+  (250.00, 'income', 'Interest income', current_date - interval '26 days', 2, 11),
+  (90.00, 'income', 'Side project payment', current_date - interval '32 days', 1, 11),
+  (350.00, 'income', 'Advisory fee', current_date - interval '37 days', 2, 11);

@@ -3,67 +3,77 @@
 
     <h3>Filter Records</h3>
     <form action="/search/filter" method="get">
-      <h4 class="margin-top-20">Record Types</h4>
-      <!-- Filter by income -->
+
+      <!-- Filter by transaction type -->
+      <h4 class="margin-top-20">Transaction Type</h4>
       <div class="form-group">
-        <label for="incomeCategory">Income</label>
-        <select id="incomeCategory" name="incomeCategory">
+        <select id="transactionType" name="transactionType">
           <option value=""></option>
-          <% categories.forEach((category)=> { %>
-            <% if (category.category_type==='income' ) { %>
-              <option value="<%= category.id %>" <%=Number(query.incomeCategory)===category.id && 'selected' %>>
-                <%= category.name %>
-              </option>
-              <% } %>
-                <% }) %>
+          <option value="income" <%=query.transactionType==='income' && 'selected' %>>Income</option>
+          <option value="expense" <%=query.transactionType==='expense' && 'selected' %>>Expense</option>
         </select>
 
-        <!-- Filter by expense -->
+        <!-- Filter by categories -->
+        <h4 class="margin-top-20">Categories</h4>
         <div class="form-group">
-          <label for="expenseCategory">Expense</label>
-          <select id="expenseCategory" name="expenseCategory">
+          <label for="incomeCategory">Income</label>
+          <select id="incomeCategory" name="incomeCategory">
             <option value=""></option>
             <% categories.forEach((category)=> { %>
-              <% if (category.category_type==='expense' ) { %>
-                <option value="<%= category.id %>" <%=Number(query.expenseCategory)===category.id && 'selected' %>>
+              <% if (category.category_type==='income' ) { %>
+                <option value="<%= category.id %>" <%=Number(query.incomeCategory)===category.id && 'selected' %>>
                   <%= category.name %>
                 </option>
                 <% } %>
                   <% }) %>
           </select>
-        </div>
-      </div>
 
-      <!-- Filter by amount -->
-      <h4 class="margin-top-20">Amount Range</h4>
-      <div class="spacer">
+          <!-- Filter by expense -->
+          <div class="form-group">
+            <label for="expenseCategory">Expense</label>
+            <select id="expenseCategory" name="expenseCategory">
+              <option value=""></option>
+              <% categories.forEach((category)=> { %>
+                <% if (category.category_type==='expense' ) { %>
+                  <option value="<%= category.id %>" <%=Number(query.expenseCategory)===category.id && 'selected' %>>
+                    <%= category.name %>
+                  </option>
+                  <% } %>
+                    <% }) %>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter by amount -->
+        <h4 class="margin-top-20">Amount Range</h4>
+        <div class="spacer">
+          <div class="form-group">
+            <label for="minAmount">Min (<%= currentUser.currency_symbol %>)</label>
+            <input type="number" min="0" step="any" name="minAmount"
+              value="<%= query.minAmount ? query.minAmount : '' %>">
+          </div>
+          <div class="form-group">
+            <label for="maxAmount">Max (<%= currentUser.currency_symbol %>)</label>
+            <input type="number" min="0" step="any" name="maxAmount"
+              value="<%= query.maxAmount ? query.maxAmount : '' %>">
+          </div>
+        </div>
+
+        <!-- Filter by date -->
+        <h4 class="margin-top-20">Date Range</h4>
         <div class="form-group">
-          <label for="minAmount">Min (<%= currentUser.currency_symbol %>)</label>
-          <input type="number" min="0" step="any" name="minAmount"
-            value="<%= query.minAmount ? query.minAmount : '' %>">
+          <label for="startDate">Start Date</label>
+          <input type="date" name="startDate" value="<%= query.startDate ? query.startDate : '' %>">
         </div>
         <div class="form-group">
-          <label for="maxAmount">Max (<%= currentUser.currency_symbol %>)</label>
-          <input type="number" min="0" step="any" name="maxAmount"
-            value="<%= query.maxAmount ? query.maxAmount : '' %>">
+          <label for="endDate">End Date</label>
+          <input type="date" name="endDate"
+            value="<%= query.endDate ? query.endDate : new Date().toISOString().substring(0, 10) %>">
         </div>
-      </div>
 
-      <!-- Filter by date -->
-      <h4 class="margin-top-20">Date Range</h4>
-      <div class="form-group">
-        <label for="startDate">Start Date</label>
-        <input type="date" name="startDate" value="<%= query.startDate ? query.startDate : '' %>">
-      </div>
-      <div class="form-group">
-        <label for="endDate">End Date</label>
-        <input type="date" name="endDate"
-          value="<%= query.endDate ? query.endDate : new Date().toISOString().substring(0, 10) %>">
-      </div>
-
-      <div class="form-group">
-        <button type="submit" class="btn-primary">Filter Records</button>
-      </div>
+        <div class="form-group">
+          <button type="submit" class="btn-primary">Filter Records</button>
+        </div>
     </form>
 
 </aside>

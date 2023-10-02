@@ -42,6 +42,7 @@ router.get("/", (req, res) => {
 router.get("/filter", (req, res) => {
   const { userId } = req.session;
   const {
+    transactionType,
     incomeCategory,
     expenseCategory,
     minAmount,
@@ -60,6 +61,11 @@ router.get("/filter", (req, res) => {
   let values = [userId];
 
   // Add user filters to the SQL query
+  if (transactionType) {
+    values.push(transactionType);
+    sql += ` AND t.transaction_type = $${values.length}`;
+  }
+
   if (incomeCategory && expenseCategory) {
     values.push(incomeCategory, expenseCategory);
     sql += ` AND t.category_id IN ($${values.length - 1}, $${values.length})`;
